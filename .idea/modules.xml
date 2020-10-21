@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/android_autostart.iml" filepath="$PROJECT_DIR$/android_autostart.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/android_autostart_android.iml" filepath="$PROJECT_DIR$/android/android_autostart_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/example/android/android_autostart_example_android.iml" filepath="$PROJECT_DIR$/example/android/android_autostart_example_android.iml" />
+    </modules>
+  </component>
+</project>
