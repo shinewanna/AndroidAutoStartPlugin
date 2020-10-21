@@ -2,7 +2,7 @@
 
 This is an AutoStart library for flutter.
 You can request to enable AutoStart with Android AutoStart.
-Many People need to access AutoStart Setting Flutter including me, but there's no good plugin yet for autostart.So I decided to make AutoStart Plugin for Developer.
+Many Developers need to access AutoStart Setting Flutter including me, but there's no good plugin yet for autostart.So I decided to make AutoStart Plugin for Developers.
 
 
 ## Getting Started
