@@ -1,11 +1,11 @@
 name: android_autostart
 description: You can request to enable AutoStart with Android AutoStart. Many Developers need to access AutoStart Setting Flutter including me, but there's no good plugin yet for autostart.So I decided to make AutoStart Plugin for Developers.
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/shinewanna/AndroidAutoStartPlugin
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
-  flutter: ">=1.20.0 <2.0.0"
+  sdk: '>=2.12.0 <3.0.0'
+  flutter: ">=1.20.0"
 
 dependencies:
   flutter:

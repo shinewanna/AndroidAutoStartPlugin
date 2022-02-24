@@ -1,3 +1,3 @@
-## 0.0.2
+## 0.0.3
 
-* TODO: Add more manufacturers.
+* Added null safety

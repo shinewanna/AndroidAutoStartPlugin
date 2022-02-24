@@ -26,12 +26,14 @@ class _MyAppState extends State<MyApp> {
         body: Center(
           child: Column(
             children: [
-              RaisedButton(
-                onPressed: () async => await AndroidAutostart.navigateAutoStartSetting,
+              ElevatedButton(
+                onPressed: () async =>
+                    await AndroidAutostart.navigateAutoStartSetting,
                 child: Text("Navigate AutoStart Setting"),
               ),
-              RaisedButton(
-                onPressed: () async => await AndroidAutostart.customSetComponent(
+              ElevatedButton(
+                onPressed: () async =>
+                    await AndroidAutostart.customSetComponent(
                   manufacturer: "xiaomi",
                   pkg: "com.miui.securitycenter",
                   cls:

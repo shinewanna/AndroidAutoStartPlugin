@@ -6,9 +6,9 @@ class AndroidAutostart {
   static const MethodChannel _channel =
       const MethodChannel('android_autostart');
 
-  static Future<String> get navigateAutoStartSetting async {
+  static Future<String?> get navigateAutoStartSetting async {
     try {
-      final String result =
+      final String? result =
           await _channel.invokeMethod('navigateAutoStartSetting');
       return result;
     } catch (e) {
@@ -16,10 +16,10 @@ class AndroidAutostart {
     }
   }
 
-  static Future<String> customSetComponent(
-      {String manufacturer, String pkg, String cls}) async {
+  static Future<String?> customSetComponent(
+      {String? manufacturer, String? pkg, String? cls}) async {
     try {
-      String result = await _channel.invokeMethod(
+      String? result = await _channel.invokeMethod(
           'customSetComponent', <String, dynamic>{
         "manufacturer": manufacturer,
         "pkg": pkg,
