@@ -38,8 +38,10 @@ public class AndroidAutostartPlugin implements FlutterPlugin, MethodCallHandler 
       String pkg = call.argument("pkg");
       String cls = call.argument("cls");
       customSetComponent(manufacturer,pkg,cls,result);
-    }else if(call.method.equals("navigateAutoStartSetting")) {
+    } else if(call.method.equals("navigateAutoStartSetting")) {
       navigateAutoStartSetting(result);
+    } else if(call.method.equals("autoStartSettingIsAvailable")) {
+      autoStartSettingIsAvailable(result);
     } else{
       result.notImplemented();
     }
@@ -87,6 +89,19 @@ public class AndroidAutostartPlugin implements FlutterPlugin, MethodCallHandler 
     }
   }
 
+  private void autoStartSettingIsAvailable(@NonNull Result result) {
+    String manufacturer = android.os.Build.MANUFACTURER;
+    
+    if(manufacturer.equalsIgnoreCase("xiaomi")
+        || manufacturer.equalsIgnoreCase("oppo")
+        || manufacturer.equalsIgnoreCase("vivo")
+        || manufacturer.equalsIgnoreCase("Letv")
+        || manufacturer.equalsIgnoreCase("Honor")){
+      result.success(true);
+    } else {
+      result.success(false);
+    }
+  }
 
   @Override
   public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {

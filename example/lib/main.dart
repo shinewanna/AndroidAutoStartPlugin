@@ -13,14 +13,22 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    super.initState();
+  final _scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
+
+  void _checkIfAutoStartSettingIsAvailable() async {
+    AndroidAutostart.autoStartSettingIsAvailable.then((isAvailable) {
+      _scaffoldMessengerKey.currentState?.showSnackBar(
+        SnackBar(
+          content: Text("Auto start setting is available: $isAvailable"),
+        ),
+      );
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      scaffoldMessengerKey: _scaffoldMessengerKey,
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Enable AutoStart Example App'),
@@ -28,6 +36,10 @@ class _MyAppState extends State<MyApp> {
         body: Center(
           child: Column(
             children: [
+              ElevatedButton(
+                onPressed: _checkIfAutoStartSettingIsAvailable,
+                child: const Text('Check if AutoStart is available'),
+              ),
               ElevatedButton(
                 onPressed: () async =>
                     await AndroidAutostart.navigateAutoStartSetting,

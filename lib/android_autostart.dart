@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 class AndroidAutostart {
@@ -13,6 +14,18 @@ class AndroidAutostart {
       return result;
     } catch (e) {
       return e.toString();
+    }
+  }
+
+  static Future<bool> get autoStartSettingIsAvailable async {
+    try {
+      final bool? result =
+          await _channel.invokeMethod('autoStartSettingIsAvailable');
+
+      return result ?? false;
+    } catch (e) {
+      if (kDebugMode) print(e.toString());
+      return false;
     }
   }
 
