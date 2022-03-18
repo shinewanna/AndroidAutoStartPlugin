@@ -22,7 +22,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  android_autostart: ^0.0.2
+  android_autostart: ^0.0.4
 ```
 
 Then run the command `flutter packages get` on the console.
@@ -33,7 +33,7 @@ Import
 import 'package:android_autostart/android_autostart.dart';
 ```
 
-Navigate to AutoStart Setting.
+**Navigate to AutoStart Setting**.
 
 navigateAutoStartSetting Supported Manufactures:
     - Xiaomi
@@ -43,18 +43,25 @@ navigateAutoStartSetting Supported Manufactures:
     - Honor
 
 ```dart
-     await AndroidAutostart.navigateAutoStartSetting;
+    await AndroidAutostart.navigateAutoStartSetting;
 ```
 
-You can use CustomSetComponent.
+You can use **CustomSetComponent**.
 
 ```dart
-     await AndroidAutostart.customSetComponent(
-                  manufacturer: "xiaomi",
-                  pkg: "com.miui.securitycenter",
-                  cls:
-                      "com.miui.permcenter.autostart.AutoStartManagementActivity",
-                 );
+    await AndroidAutostart.customSetComponent(
+      manufacturer: "xiaomi",
+      pkg: "com.miui.securitycenter",
+      cls: "com.miui.permcenter.autostart.AutoStartManagementActivity",
+    );
+```
+
+**Check if AutoStart Setting is available**
+
+To check if devices supports navigation to AutoStart Setting use the autoStartSettingIsAvailable function. It returns true if the device is provided by a manufacture supported.
+
+```dart
+  await AndroidAutostart.autoStartSettingIsAvailable;
 ```
 
 ## Platform Detail
