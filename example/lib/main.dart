@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:android_autostart/android_autostart.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -29,7 +31,7 @@ class _MyAppState extends State<MyApp> {
               ElevatedButton(
                 onPressed: () async =>
                     await AndroidAutostart.navigateAutoStartSetting,
-                child: Text("Navigate AutoStart Setting"),
+                child: const Text("Navigate AutoStart Setting"),
               ),
               ElevatedButton(
                 onPressed: () async =>
@@ -39,7 +41,7 @@ class _MyAppState extends State<MyApp> {
                   cls:
                       "com.miui.permcenter.autostart.AutoStartManagementActivity",
                 ),
-                child: Text("Custom Set Component"),
+                child: const Text("Custom Set Component"),
               ),
             ],
           ),
