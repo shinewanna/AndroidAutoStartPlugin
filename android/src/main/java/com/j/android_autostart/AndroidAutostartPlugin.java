@@ -75,9 +75,17 @@ public class AndroidAutostartPlugin implements FlutterPlugin, MethodCallHandler 
         intent.setComponent(new ComponentName("com.letv.android.letvsafe", "com.letv.android.letvsafe.AutobootManageActivity"));
       } else if ("Honor".equalsIgnoreCase(manufacturer)) {
         intent.setComponent(new ComponentName("com.huawei.systemmanager", "com.huawei.systemmanager.optimize.process.ProtectActivity"));
-      }else{
-        return;
-      }
+      }else if ("samsung".equalsIgnoreCase(manufacturer)) {
+        intent.setComponent(new ComponentName("com.samsung.android.lool", "com.samsung.android.sm.ui.battery.BatteryActivity"));
+      }else if ("oneplus".equalsIgnoreCase(manufacturer)) {
+        intent.setComponent(new ComponentName("com.oneplus.security", "com.oneplus.security.chainlaunch.view.ChainLaunchAppListActivity"));
+      }else if ("nokia".equalsIgnoreCase(manufacturer)) {
+        intent.setComponent(new ComponentName("com.evenwell.powersaving.g3", "com.evenwell.powersaving.g3.exception.PowerSaverExceptionActivity"));
+      }else if ("asus".equalsIgnoreCase(manufacturer)) {
+        intent.setComponent(new ComponentName("com.asus.mobilemanager", "com.asus.mobilemanager.autostart.AutoStartActivy"));
+      } else if ("realme".equalsIgnoreCase(manufacturer)) {
+        intent.setAction(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
+    }else{return;}
       intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
       context.startActivity(intent);
 
