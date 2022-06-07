@@ -66,6 +66,11 @@ public class AndroidAutostartPlugin implements FlutterPlugin, MethodCallHandler 
     try {
       Intent intent = new Intent();
       if ("xiaomi".equalsIgnoreCase(manufacturer)) {
+        val it = Intent("miui.intent.action.APP_PERM_EDITOR")
+        it.setClassName("com.miui.securitycenter",
+                "com.miui.permcenter.permissions.PermissionsEditorActivity")
+        it.putExtra("extra_pkgname", getPackageName())
+        context.startActivity(it);
         intent.setComponent(new ComponentName("com.miui.securitycenter", "com.miui.permcenter.autostart.AutoStartManagementActivity"));
       } else if ("oppo".equalsIgnoreCase(manufacturer)) {
         intent.setComponent(new ComponentName("com.coloros.safecenter", "com.coloros.safecenter.permission.startup.StartupAppListActivity"));
