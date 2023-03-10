@@ -19,7 +19,7 @@ dependencies:
   android_autostart:
     git:
       url: https://github.com/Jeferson505/AndroidAutoStartPlugin.git
-      ref: v1.0.0
+      ref: v1.0.1
 ```
 
 Then run the command `flutter pub get` on the console.
