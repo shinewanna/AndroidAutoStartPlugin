@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.j.android_autostart_example">
+    package="com.example.android_autostart_example">
    <application
         android:label="android_autostart_example"
         android:name="${applicationName}"
