@@ -16,7 +16,7 @@ import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 /** AndroidAutostartPlugin */
-public class AndroidAutostartPlugin implements FlutterPlugin, MethodCallHandler  {
+public class AndroidAutostartPlugin implements FlutterPlugin, MethodCallHandler {
   /// The MethodChannel that will the communication between Flutter and native Android
   ///
   /// This local reference serves to register the plugin with the Flutter Engine and unregister it
@@ -37,27 +37,32 @@ public class AndroidAutostartPlugin implements FlutterPlugin, MethodCallHandler 
       String manufacturer = call.argument("manufacturer");
       String pkg = call.argument("pkg");
       String cls = call.argument("cls");
+
       customSetComponent(manufacturer,pkg,cls,result);
-    }else if(call.method.equals("navigateAutoStartSetting")) {
+    } else if(call.method.equals("navigateAutoStartSetting")) {
       navigateAutoStartSetting(result);
+    } else if(call.method.equals("autoStartSettingIsAvailable")) {
+      autoStartSettingIsAvailable(result);
     } else{
       result.notImplemented();
     }
   }
 
-
   private void customSetComponent(String manufacturer, String pkg, String cls,@NonNull Result result){
     String systemManufacturer = android.os.Build.MANUFACTURER;
     try {
       Intent intent = new Intent();
+
       if (manufacturer.equalsIgnoreCase(systemManufacturer)) {
         intent.setComponent(new ComponentName(pkg, cls));
       }
+
       intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
       context.startActivity(intent);
-      result.success("Success");
+
+      result.success(true);
     }catch (Exception e){
-      result.error("Failed",e.toString(),"");
+      result.success(false);
     }
   }
 
@@ -75,25 +80,47 @@ public class AndroidAutostartPlugin implements FlutterPlugin, MethodCallHandler 
         intent.setComponent(new ComponentName("com.letv.android.letvsafe", "com.letv.android.letvsafe.AutobootManageActivity"));
       } else if ("Honor".equalsIgnoreCase(manufacturer)) {
         intent.setComponent(new ComponentName("com.huawei.systemmanager", "com.huawei.systemmanager.optimize.process.ProtectActivity"));
-      }else{
+      } else if ("samsung".equalsIgnoreCase(manufacturer)) {
+        intent.setComponent(new ComponentName("com.samsung.android.lool", "com.samsung.android.sm.ui.battery.BatteryActivity"));
+      } else if ("oneplus".equalsIgnoreCase(manufacturer)) {
+        intent.setComponent(new ComponentName("com.oneplus.security", "com.oneplus.security.chainlaunch.view.ChainLaunchAppListActivity"));
+      } else if ("nokia".equalsIgnoreCase(manufacturer)) {
+        intent.setComponent(new ComponentName("com.evenwell.powersaving.g3", "com.evenwell.powersaving.g3.exception.PowerSaverExceptionActivity"));
+      } else if ("asus".equalsIgnoreCase(manufacturer)) {
+        intent.setComponent(new ComponentName("com.asus.mobilemanager", "com.asus.mobilemanager.autostart.AutoStartActivy"));
+      } else {
         return;
       }
+      
       intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
       context.startActivity(intent);
 
-      result.success("Success");
+      result.success(true);
     }catch (Exception e){
-      result.error("Failed",e.toString(),"");
+      result.success(false);
     }
   }
 
+  private void autoStartSettingIsAvailable(@NonNull Result result) {
+    String manufacturer = android.os.Build.MANUFACTURER;
+    
+    if(manufacturer.equalsIgnoreCase("xiaomi")
+      || manufacturer.equalsIgnoreCase("oppo")
+      || manufacturer.equalsIgnoreCase("vivo")
+      || manufacturer.equalsIgnoreCase("Letv")
+      || manufacturer.equalsIgnoreCase("Honor")
+      || manufacturer.equalsIgnoreCase("samsung")
+      || manufacturer.equalsIgnoreCase("oneplus")
+      || manufacturer.equalsIgnoreCase("nokia")
+      || manufacturer.equalsIgnoreCase("asus")) {
+      result.success(true);
+    } else {
+      result.success(false);
+    }
+  }
 
   @Override
   public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
     channel.setMethodCallHandler(null);
   }
 }
-
-
-
-
